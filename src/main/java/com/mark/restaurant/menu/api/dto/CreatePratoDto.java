@@ -14,7 +14,7 @@ public record CreatePratoDto(
         @URL
         @NotEmpty
         String imagemUrl,
-        @Positive @NotEmpty
+        @Positive
         BigDecimal price,
         Type tipo,
         Long cardapioId
