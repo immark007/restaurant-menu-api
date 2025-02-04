@@ -1,18 +1,11 @@
 package com.mark.restaurant.menu.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "cardapio")
 public class Cardapio {
@@ -23,5 +16,37 @@ public class Cardapio {
     private String nome;
 
     @OneToMany(mappedBy = "cardapios", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Pratos> pratos;
+
+    public Cardapio() {
+    }
+
+    public Cardapio(String nome) {
+        this.nome = nome;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Pratos> getPratos() {
+        return pratos;
+    }
+
+    public void setPratos(List<Pratos> pratos) {
+        this.pratos = pratos;
+    }
 }
