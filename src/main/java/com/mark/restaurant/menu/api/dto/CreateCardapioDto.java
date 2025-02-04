@@ -1,4 +1,11 @@
 package com.mark.restaurant.menu.api.dto;
 
-public record CreateCardapioDto(String nome) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+
+public record CreateCardapioDto(
+        @NotEmpty
+        @NotBlank
+        String nome
+) {
 }

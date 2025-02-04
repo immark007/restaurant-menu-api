@@ -4,6 +4,7 @@ package com.mark.restaurant.menu.api.controllers;
 import com.mark.restaurant.menu.api.domain.Cardapio;
 import com.mark.restaurant.menu.api.dto.CreateCardapioDto;
 import com.mark.restaurant.menu.api.services.CardapioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class CardapioController {
     private CardapioService cardapioService;
 
     @PostMapping("/create")
-    public ResponseEntity<Cardapio> criarCardapio(@RequestBody CreateCardapioDto cardapioDto) {
+    public ResponseEntity<Cardapio> criarCardapio(@RequestBody @Valid CreateCardapioDto cardapioDto) {
         Cardapio cardapio = cardapioService.save(cardapioDto);
         return ResponseEntity.ok(cardapio);
     }
