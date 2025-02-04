@@ -4,6 +4,7 @@ package com.mark.restaurant.menu.api.controllers;
 import com.mark.restaurant.menu.api.domain.Pratos;
 import com.mark.restaurant.menu.api.dto.CreatePratoDto;
 import com.mark.restaurant.menu.api.services.PratosService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class PratoController {
     private PratosService pratosService;
 
     @PostMapping("/create")
-    public ResponseEntity<Pratos> create(@RequestBody CreatePratoDto pratos){
+    public ResponseEntity<Pratos> create(@RequestBody @Valid CreatePratoDto pratos){
         Pratos prato = pratosService.savePratos(pratos);
         return ResponseEntity.ok(prato);
     }
