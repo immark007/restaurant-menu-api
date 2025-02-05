@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class PratosService {
@@ -42,4 +44,13 @@ public class PratosService {
         }
         pratosRepository.deleteById(id);
     }
+
+    public Optional<Pratos> findByName(String name) {
+        if(pratosRepository.findByNome(name).isEmpty()) {
+            throw  new NotFoundException("Prato não encontrado");
+        }
+        return pratosRepository.findByNome(name);
+    }
+
+
 }

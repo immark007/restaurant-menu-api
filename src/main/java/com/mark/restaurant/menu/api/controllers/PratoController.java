@@ -12,7 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/pratos")
@@ -36,5 +37,11 @@ public class PratoController {
     public ResponseEntity<Void> delete(@PathVariable("pratoId") Long pratoId){
         pratosService.deletePrato(pratoId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("buscar/{nome}")
+    public ResponseEntity<Optional<Pratos>> buscarPorNome(@PathVariable("nome") String nome){
+        Optional<Pratos> pratos = pratosService.findByName(nome);
+        return ResponseEntity.ok(pratos);
     }
 }
